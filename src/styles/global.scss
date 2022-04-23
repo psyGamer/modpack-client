@@ -3,6 +3,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	image-rendering: -webkit-optimize-contrast; // Improve image quality on Chromium based browsers
 }
 
 :root {
