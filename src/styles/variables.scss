@@ -1,0 +1,55 @@
+/* Others */
+$font-standard: 'Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Roboto,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif';
+
+$border-radius-icon: 20%;
+$border-radius-button: 100vh; // 100% wouldn't work
+
+/* Colors */
+
+// $color-primary: linear-gradient(90deg, hsl(35, 100%, 45%), hsl(55, 100%, 45%));
+// $color-primary-hover: linear-gradient(90deg, hsl(35, 90%, 55%), hsl(55, 90%, 55%));
+// $color-primary-active: linear-gradient(90deg, hsl(35, 80%, 65%), hsl(55, 80%, 65%));
+$color-primary: linear-gradient(90deg, hsl(200, 100%, 45%), hsl(220, 100%, 45%));
+$color-primary-plain: hsl(210, 100%, 45%);
+$color-primary-hover: linear-gradient(90deg, hsl(200, 90%, 55%), hsl(220, 90%, 55%));
+$color-primary-hover-plain: hsl(210, 100%, 55%);
+$color-primary-active: linear-gradient(90deg, hsl(200, 80%, 65%), hsl(220, 80%, 65%));
+$color-primary-active-plain: hsl(210, 100%, 65%);
+
+$color-text: hsl(0, 0%, 100%);
+$color-text-hover: hsl(0, 0%, 80%);
+$color-text-active: hsl(0, 0%, 60%);
+
+$color-text-heading: hsl(0, 0%, 100%);
+$color-text-subheading: hsl(0, 0%, 80%);
+$color-text-heading-details: hsl(0, 0%, 70%);
+
+$color-bg1: hsl(0, 0%, 10%);
+$color-bg2: hsl(0, 0%, 20%);
+$color-bg3: hsl(0, 0%, 30%);
+
+// OLD
+$color-heading: hsl(188, 65%, 95%);
+
+$color-text-inactive: hsl(212, 8%, 61%);
+$color-link: hsl(199, 62%, 62%);
+$color-link-hover: hsl(199, 62%, 70%);
+
+$color-bg: hsl(220, 12%, 10%);
+$color-raised-bg: hsl(220, 11%, 17%);
+
+$color-divider: hsl(212, 8%, 43%);
+
+$color-button-bg: hsl(217, 9%, 27%);
+$color-button-text: $color-text;
+$color-button-bg-hover: hsl(216, 9%, 32%);
+$color-button-text-hover: hsl(0, 0%, 100%);
+$color-button-bg-active: hsl(224, 7%, 41%);
+$color-button-text-active: $color-button-text-hover;
+$color-button-bg-disabled: #3a434d;
+$color-button-text-disabled: hsl(210, 9%, 36%);
+
+// $color-transparent-button-bg-hover: $color-button-bg;
+// $color-transparent-button-text-hover: $color-text-dark;
+// $color-transparent-button-bg-active: $color-button-bg-hover;
+// $color-transparent-button-text-active: $color-text-dark;
