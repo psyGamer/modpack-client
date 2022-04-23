@@ -1,5 +1,7 @@
 /* Others */
-$font-standard: 'Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Roboto,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif';
+$font-standard: 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Oxygen', 'Ubuntu',
+	'Roboto', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-standard-emoji: 'Noto Colr Emoji Glyf';
 
 $border-radius-icon: 20%;
 $border-radius-button: 100vh; // 100% wouldn't work
@@ -12,28 +14,32 @@ $border-radius-button: 100vh; // 100% wouldn't work
 $color-primary: linear-gradient(90deg, hsl(200, 100%, 45%), hsl(220, 100%, 45%));
 $color-primary-plain: hsl(210, 100%, 45%);
 $color-primary-hover: linear-gradient(90deg, hsl(200, 90%, 55%), hsl(220, 90%, 55%));
-$color-primary-hover-plain: hsl(210, 100%, 55%);
+$color-primary-hover-plain: hsl(210, 90%, 55%);
 $color-primary-active: linear-gradient(90deg, hsl(200, 80%, 65%), hsl(220, 80%, 65%));
-$color-primary-active-plain: hsl(210, 100%, 65%);
+$color-primary-active-plain: hsl(210, 80%, 65%);
 
 $color-text: hsl(0, 0%, 100%);
-$color-text-hover: hsl(0, 0%, 80%);
+$color-text-hover: hsl(0, 0%, 90%);
 $color-text-active: hsl(0, 0%, 60%);
 
 $color-text-heading: hsl(0, 0%, 100%);
 $color-text-subheading: hsl(0, 0%, 80%);
 $color-text-heading-details: hsl(0, 0%, 70%);
 
-$color-bg1: hsl(0, 0%, 10%);
-$color-bg2: hsl(0, 0%, 20%);
+$color-link: hsl(210, 100%, 70%);
+$color-link-hover: hsl(210, 100%, 85%);
+$color-link-active: hsl(210, 100%, 95%);
+
+$color-bg1: hsl(0, 0%, 15%);
+$color-bg2: hsl(0, 0%, 25%);
 $color-bg3: hsl(0, 0%, 30%);
 
 // OLD
 $color-heading: hsl(188, 65%, 95%);
 
 $color-text-inactive: hsl(212, 8%, 61%);
-$color-link: hsl(199, 62%, 62%);
-$color-link-hover: hsl(199, 62%, 70%);
+// $color-link: hsl(199, 62%, 62%);
+// $color-link-hover: hsl(199, 62%, 70%);
 
 $color-bg: hsl(220, 12%, 10%);
 $color-raised-bg: hsl(220, 11%, 17%);
