@@ -5,7 +5,7 @@
 	<div v-else class="mod">
 		<div class="info-bar">
 			<div class="mod-details">
-				<img :src="imageURL" :alt="mod.title" />
+				<img :srcset="`${imageURL} 2x`" :alt="mod.title" />
 				<div class="title-and-author">
 					<h1>{{ mod.title }}</h1>
 					<p>by {{ mod.team }}</p>
@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 
 import fetchMod from '@/composables/fetchMod'

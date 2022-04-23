@@ -1,6 +1,6 @@
 <template>
 	<button>
-		<img v-if="src" :src="require(`@/assets/${src}`)" alt="Download icon" />
+		<img v-if="src" :srcset="require(`@/assets/${src} 2x`)" alt="Download icon" />
 		<img v-if="remoteSrc" :src="remoteSrc" alt="Download icon" />
 		<slot />
 	</button>
@@ -29,7 +29,6 @@ button {
 
 	color: $color-text;
 
-	font-family: 'Inter';
 	font-size: 1.1rem;
 	font-weight: bold;
 	text-transform: uppercase;
