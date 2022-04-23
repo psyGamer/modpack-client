@@ -29,29 +29,96 @@ export default defineComponent({
 
 <style lang="scss">
 .markdown {
-	font-size: 1rem;
+	font-size: 1.5rem;
+	line-height: 1.4em;
 	padding: 3em;
 
-	img {
-		max-width: 90%;
-	}
-	code {
-		font-size: 90%;
-		font-family: 'Jetbrains Mono';
-
-		padding: 0.2em;
-
-		background: $color-button-bg;
-		border-radius: 0.2em;
-	}
 	a {
+		position: relative;
 		color: $color-link;
 		text-decoration: none;
 		transition: color 0.1s;
 
-		&:hover {
+		&:hover,
+		&:focus-visible {
 			color: $color-link-hover;
+			&::after {
+				//width: 100%; Uncomment this line to enable a indicator on hovered links
+				left: 0;
+			}
 		}
+		&:active {
+			color: $color-link-active;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			background: $color-primary-hover;
+
+			width: 0%;
+			height: 0.1em;
+
+			left: 50%;
+			bottom: -0.1em;
+
+			border-radius: 100vw;
+			transition: all 0.25s ease;
+		}
+	}
+
+	h2 {
+		position: relative;
+		font-size: 2em;
+		margin-block: 1em 0.5em;
+
+		height: fit-content;
+
+		&::after {
+			content: '';
+			position: absolute;
+			background: $color-bg3;
+
+			width: 100%;
+			height: 0.1em;
+
+			left: 0;
+			bottom: -0.3em;
+
+			border-radius: 100vw;
+		}
+
+		img {
+			height: 100%;
+			margin: 0 !important;
+		}
+	}
+
+	ul,
+	ol {
+		margin-block: 1em;
+		margin-inline: 2em 0;
+		li {
+			font-size: 1.1em;
+
+			&::marker {
+				font-weight: bold;
+			}
+		}
+	}
+
+	img {
+		max-width: 100%;
+		margin-block: 0.75em;
+	}
+	code {
+		font-size: 0.8em;
+		font-family: 'Jetbrains Mono';
+
+		padding: 0.3em 0.4em;
+
+		background: $color-bg-codeblock;
+		border-radius: 0.3em;
 	}
 }
 </style>

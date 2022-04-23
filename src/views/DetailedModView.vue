@@ -11,24 +11,23 @@
 					<p>by {{ mod.team }}</p>
 				</div>
 			</div>
-			<div class="download-btn">
-				<icon-button src="download_white.svg" alt="Download icon">Download</icon-button>
-			</div>
+			<icon-button src="download_white.svg" alt="Download icon" class="download-btn"
+				>Download</icon-button
+			>
 		</div>
 
-		<subroute-selector
-			class="content-selector"
-			:routes="[
-				{ route: 'description', name: 'Description' },
-				{ route: 'versions', name: 'Versions' },
-				{ route: 'changelog', name: 'Changelog' },
-				{ route: 'gallery', name: 'Gallery' },
-			]"
-			routeName="mod-content"
-			routeParamName="content"
-		/>
-
 		<div class="content">
+			<subroute-selector
+				class="content-selector"
+				:routes="[
+					{ route: 'description', name: 'Description' },
+					{ route: 'versions', name: 'Versions' },
+					{ route: 'changelog', name: 'Changelog' },
+					{ route: 'gallery', name: 'Gallery' },
+				]"
+				routeName="mod-content"
+				routeParamName="content"
+			/>
 			<markdown-renderer :content="mod.body" />
 		</div>
 	</div>
@@ -36,7 +35,7 @@
 
 <script lang="ts">
 import { computed, ref } from 'vue'
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 
 import fetchMod from '@/composables/fetchMod'
 import IconButton from '@/components/ui/IconButton.vue'
@@ -77,19 +76,23 @@ export default {
 
 <style lang="scss">
 .info-bar {
+	font-size: 1rem;
+
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 
-	padding-inline: 2rem;
+	padding-inline: 2em;
 
 	.mod-details {
 		display: flex;
 		align-items: center;
 
+		font-size: 3em;
+
 		img {
-			width: 8rem;
-			height: 8rem;
+			width: 4em;
+			height: 4em;
 			border-radius: $border-radius-icon;
 		}
 		.title-and-author {
@@ -99,15 +102,28 @@ export default {
 
 			h1 {
 				color: $color-text-heading;
-				font-size: 2rem;
-
+				font-size: 1em;
 				margin-inline: 1em 0.5em;
 			}
 			p {
 				color: $color-text-subheading;
-				font-size: 1rem;
+				font-size: 0.5em;
 			}
 		}
+	}
+	.download-btn {
+		font-size: 2em;
+	}
+}
+
+.content {
+	background: $color-bg2;
+	border-radius: 2.5em;
+	margin: 2em;
+
+	.markdown {
+		max-width: 60vw;
+		margin: 0 auto;
 	}
 }
 </style>
