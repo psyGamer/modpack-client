@@ -1,7 +1,5 @@
 <template>
-	<button>
-		<img v-if="src" :src="require(`@/assets/${src}`)" alt="Download icon" />
-		<img v-if="remoteSrc" :src="remoteSrc" alt="Download icon" />
+	<button class="primary-button">
 		<slot />
 	</button>
 </template>
@@ -10,19 +8,12 @@
 import { defineComponent } from '@vue/runtime-core'
 
 export default defineComponent({
-	name: 'IconButton',
-	props: {
-		src: String, // For local files inside @/assets/
-		remoteSrc: String, // For files from a remote
-		alt: String,
-	},
+	name: 'PrimaryButton'
 })
 </script>
 
-<style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
-
-button {
+<style lang="scss">
+.primary-button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -32,7 +23,7 @@ button {
 	font-weight: bold;
 	text-transform: uppercase;
 
-	padding: 0.4em 1.6em;
+	padding: 0.4em 1.2em;
 	border-radius: $border-radius-button;
 
 	border: none;
@@ -41,9 +32,9 @@ button {
 
 	cursor: pointer;
 
-	img {
-		width: 1.25em * 1.3;
-		height: 1.25em * 1.3;
+	img, svg {
+		width: 1.25em;
+		height: 1.25em;
 
 		margin-right: 0.8em;
 	}
