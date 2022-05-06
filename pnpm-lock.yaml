@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@types/luxon': ^2.3.1
   '@types/marked': ^4.0.3
   '@types/sanitize-html': ^2.6.2
   '@typescript-eslint/eslint-plugin': ^5.4.0
@@ -15,6 +16,7 @@ specifiers:
   core-js: ^3.8.3
   eslint: ^7.32.0
   eslint-plugin-vue: ^8.0.3
+  luxon: ^2.3.2
   marked: ^4.0.14
   node-sass: ^7.0.1
   sanitize-html: ^2.7.0
@@ -27,6 +29,7 @@ specifiers:
 
 dependencies:
   core-js: 3.22.0
+  luxon: 2.3.2
   marked: 4.0.14
   sanitize-html: 2.7.0
   vue: 3.2.33
@@ -34,6 +37,7 @@ dependencies:
   vuex: 4.0.2_vue@3.2.33
 
 devDependencies:
+  '@types/luxon': 2.3.1
   '@types/marked': 4.0.3
   '@types/sanitize-html': 2.6.2
   '@typescript-eslint/eslint-plugin': 5.19.0_a8023c488b04c563b8304dd7b58080f4
@@ -1492,6 +1496,10 @@ packages:
 
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
+    dev: true
+
+  /@types/luxon/2.3.1:
+    resolution: {integrity: sha512-nAPUltOT28fal2eDZz8yyzNhBjHw1NEymFBP7Q9iCShqpflWPybxHbD7pw/46jQmT+HXOy1QN5hNTms8MOTlOQ==}
     dev: true
 
   /@types/marked/4.0.3:
@@ -5029,6 +5037,11 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /luxon/2.3.2:
+    resolution: {integrity: sha512-MlAQQVMFhGk4WUA6gpfsy0QycnKP0+NlCBJRVRNPxxSIbjrCbQ65nrpJD3FVyJNZLuJ0uoqL57ye6BmDYgHaSw==}
+    engines: {node: '>=12'}
+    dev: false
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
