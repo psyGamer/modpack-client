@@ -5,6 +5,7 @@
 				<router-link
 					:id="route.route"
 					:to="{ name: routeName, params: createRouteParam(route.route) }"
+					exact
 				>
 					{{ route.name }}
 				</router-link>
@@ -79,7 +80,7 @@ export default defineComponent({
 	background: $color-bg3;
 	margin: 0.5em auto;
 
-	border-radius: 1.25em;
+	border-radius: 0 0 1.25em 1.25em;
 
 	ul {
 		height: 100%;
@@ -110,7 +111,7 @@ export default defineComponent({
 				color: $color-text-hover;
 				transform: translateY(-0.1em);
 			}
-			&.router-link-exact-active {
+			&.router-link-active {
 				color: $color-text;
 				transform: translateY(-0.25em) scale(1.1);
 			}
@@ -129,7 +130,7 @@ export default defineComponent({
 			width: calc(var(--selected-width) - 3em);
 			height: 0.25em;
 
-			background: $color-primary;
+			background: $color-primary-plain;
 			border-radius: 100vw;
 			transition: var(--transition-elements) 0.2s ease;
 		}

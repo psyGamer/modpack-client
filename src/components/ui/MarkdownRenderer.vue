@@ -32,6 +32,7 @@ export default defineComponent({
 	font-size: 1.5rem;
 	line-height: 1.4em;
 	padding: 3em;
+	padding-top: 0;
 
 	a {
 		position: relative;
@@ -67,10 +68,10 @@ export default defineComponent({
 		}
 	}
 
-	h2 {
+	h1, h2 {
 		position: relative;
 		font-size: 2em;
-		margin-block: 1em 0.5em;
+		margin-block: 1em 0.75em;
 
 		height: fit-content;
 
@@ -83,7 +84,7 @@ export default defineComponent({
 			height: 0.1em;
 
 			left: 0;
-			bottom: -0.3em;
+			bottom: -0.5em;
 
 			border-radius: 100vw;
 		}
@@ -92,6 +93,9 @@ export default defineComponent({
 			height: 100%;
 			margin: 0 !important;
 		}
+	}
+	h1 {
+		font-size: 2.75em;
 	}
 
 	ul,
