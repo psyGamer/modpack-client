@@ -10,15 +10,13 @@
 				<subroute-selector
 					class="content-selector"
 					:routes="[
-						{ route: 'description', name: 'Description' },
-						{ route: 'versions', name: 'Versions' },
-						{ route: 'changelog', name: 'Changelog' },
-						{ route: 'gallery', name: 'Gallery' },
+						{ routeName: 'mod-description', displayName: 'Description' },
+						{ routeName: 'mod-versions', displayName: 'Versions' },
+						{ routeName: 'mod-versions', displayName: 'Changelog' },
+						{ routeName: 'mod-versions', displayName: 'Gallery' },
 					]"
-					routeName="mod-content"
-					routeParamName="content"
 				/>
-				<markdown-renderer :content="mod.body" />
+				<router-view />
 			</div>
 			<div class="side">
 				<p class="description">{{ mod.description }}</p>

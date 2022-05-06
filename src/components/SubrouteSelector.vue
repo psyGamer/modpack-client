@@ -2,12 +2,8 @@
 	<div class="content-selector">
 		<ul ref="listRef" :style="cssVars">
 			<li v-for="route in routes" :key="route">
-				<router-link
-					:id="route.route"
-					:to="{ name: routeName, params: createRouteParam(route.route) }"
-					exact
-				>
-					{{ route.name }}
+				<router-link :id="route.routeName" :to="{ name: route.routeName }" exact>
+					{{ route.displayName }}
 				</router-link>
 			</li>
 		</ul>
@@ -18,23 +14,15 @@
 import { defineComponent, onMounted, PropType, reactive, ref } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 
-type Route = { route: string; name: string }
+type Route = { routeName: string; displayName: string }
 
 export default defineComponent({
 	name: 'SubrouteSelector',
 	props: {
 		routes: { type: Array as PropType<Route[]>, required: true },
-		routeName: { type: String, required: true },
-		routeParamName: { type: String, required: true },
 	},
 	setup: props => {
 		// We need to do this since the key will change
-		const createRouteParam = (dst: string) => {
-			const routeParam: any = {}
-			routeParam[props.routeParamName as string] = dst
-			return routeParam
-		}
-
 		const listRef = ref<HTMLUListElement | undefined>(undefined)
 		const activeRouteRef = ref<HTMLAnchorElement | null | undefined>(null)
 
@@ -51,9 +39,7 @@ export default defineComponent({
 		}
 
 		onBeforeRouteUpdate(to => {
-			activeRouteRef.value = listRef.value?.querySelector(
-				`a#${to.params[props.routeParamName]}`
-			)
+			activeRouteRef.value = listRef.value?.querySelector(`a#${to.name?.toString()}`)
 			updateCssVars()
 		})
 		onMounted(() => {
@@ -61,7 +47,7 @@ export default defineComponent({
 			updateCssVars()
 		})
 
-		return { listRef, activeRouteRef, createRouteParam, cssVars }
+		return { listRef, activeRouteRef, cssVars }
 	},
 })
 </script>
