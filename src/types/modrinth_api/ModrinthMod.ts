@@ -2,7 +2,6 @@ import ModrinthDonationLink from './ModrinthDonationLink'
 import ModrinthGalleryImage from './ModrinthGalleryImage'
 import ModrinthLicense from './ModrinthLicense'
 import ModrinthModeratorMessage from './ModrinthModeratorMessage'
-import ModrinthProjectStatus from './ModrinthProjectStatus'
 
 export default interface ModrinthMod {
 	id: string
@@ -21,11 +20,14 @@ export default interface ModrinthMod {
 	downloads: number
 	followers: number
 
-	status: ModrinthProjectStatus
+	status: 'approved' | 'rejected' | 'draft' | 'unlisted' | 'archived' | 'processing' | 'unknown'
 	published: string
 	updated: string
 
-	moderator_message: ModrinthModeratorMessage | null
+	moderator_message: {
+		message: string
+		body: string | null
+	} | null
 
 	client_side: string
 	server_side: string
@@ -35,8 +37,18 @@ export default interface ModrinthMod {
 	issue_url: string | null
 	wiki_url: string | null
 	discord_url: string | null
-	donation_url: ModrinthDonationLink[] | null
+	donation_url:
+		| {
+				id: string
+				platform: string
+				url: string
+		  }[]
+		| null
 
-	license: ModrinthLicense
+	license: {
+		id: string
+		name: string
+		url: string | null
+	}
 	gallery: ModrinthGalleryImage[] | null
 }
