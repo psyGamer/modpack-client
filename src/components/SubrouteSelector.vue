@@ -1,5 +1,5 @@
 <template>
-	<div class="content-selector">
+	<div ref="rootRef" :class="`content-selector${sticky ? ' sticky' : ''}`">
 		<ul ref="listRef" :style="cssVars">
 			<li v-for="route in routes" :key="route">
 				<router-link :id="route.routeName" :to="{ name: route.routeName }" exact>
@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, reactive, ref } from 'vue'
+import { defineComponent, onMounted, onUnmounted, PropType, reactive, ref } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 
 type Route = { routeName: string; displayName: string }
@@ -22,9 +22,12 @@ export default defineComponent({
 		routes: { type: Array as PropType<Route[]>, required: true },
 	},
 	setup: props => {
-		// We need to do this since the key will change
+		const rootRef = ref<HTMLDivElement | undefined>(undefined)
 		const listRef = ref<HTMLUListElement | undefined>(undefined)
 		const activeRouteRef = ref<HTMLAnchorElement | null | undefined>(null)
+
+		const sticky = ref(false)
+		const stickyStart = ref(Number.MAX_VALUE)
 
 		const cssVars = reactive({
 			'--selected-width': `${activeRouteRef.value?.offsetWidth}px`,
@@ -38,16 +41,28 @@ export default defineComponent({
 			cssVars['--selected-left'] = `${activeRouteRef.value.offsetLeft}px`
 		}
 
+		const handleScroll = () => {
+			if (!rootRef.value) return
+			sticky.value = rootRef.value && window.scrollY >= stickyStart.value
+			console.log(stickyStart.value, window.scrollY, rootRef.value.offsetTop)
+		}
+
 		onBeforeRouteUpdate(to => {
 			activeRouteRef.value = listRef.value?.querySelector(`a#${to.name?.toString()}`)
 			updateCssVars()
 		})
 		onMounted(() => {
+			window.addEventListener('scroll', handleScroll)
 			activeRouteRef.value = listRef.value?.querySelector('a.router-link-exact-active')
 			updateCssVars()
+
+			if (rootRef.value) stickyStart.value = rootRef.value.offsetTop
+		})
+		onUnmounted(() => {
+			window.removeEventListener('scroll', handleScroll)
 		})
 
-		return { listRef, activeRouteRef, cssVars }
+		return { rootRef, listRef, activeRouteRef, cssVars, sticky }
 	},
 })
 </script>
@@ -68,6 +83,8 @@ export default defineComponent({
 
 	// border-radius: 0 0 1.25em 1.25em;
 	border-radius: 1.25em;
+
+	transition: border-radius 0.2s ease;
 
 	ul {
 		height: 100%;
@@ -122,5 +139,14 @@ export default defineComponent({
 			transition: var(--transition-elements) 0.2s ease;
 		}
 	}
+}
+
+.sticky {
+	position: fixed;
+	top: 0;
+	z-index: 1;
+
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 </style>
