@@ -9,13 +9,13 @@ import { defineComponent } from 'vue'
 import { useStore } from 'vuex'
 
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer.vue'
-import { getMod, getError } from '@/store/mod-details'
+import { getVersions } from '@/store/mod-details'
 
 export default defineComponent({
 	components: { MarkdownRenderer },
 	setup: () => {
 		const store = useStore()
-		return { mod: getMod(store), error: getError(store) }
+		return { versions: getVersions(store) }
 	},
 })
 </script>

@@ -1,7 +1,4 @@
-import ModrinthDonationLink from './ModrinthDonationLink'
 import ModrinthGalleryImage from './ModrinthGalleryImage'
-import ModrinthLicense from './ModrinthLicense'
-import ModrinthModeratorMessage from './ModrinthModeratorMessage'
 
 export default interface ModrinthMod {
 	id: string

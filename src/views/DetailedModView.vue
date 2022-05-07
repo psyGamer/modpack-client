@@ -51,7 +51,10 @@
 
 		<div class="content">
 			<router-view v-slot="{ Component }">
-				<transition :enter-active-class="transIn" :leave-active-class="transOut">
+				<transition
+					:enter-active-class="contentInTransition"
+					:leave-active-class="contentOutTransition"
+				>
 					<component :is="Component" />
 				</transition>
 			</router-view>
@@ -62,24 +65,22 @@
 <script lang="ts">
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
+import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute } from 'vue-router'
 
 import SubrouteSelector from '@/components/SubrouteSelector.vue'
-import MarkdownRenderer from '@/components/ui/MarkdownRenderer.vue'
 
 import PrimaryButton from '@/components/ui/PrimaryButton.vue'
 import DownloadIcon from '@/components/icon/DownloadIcon.vue'
 import CalendarIcon from '@/components/icon/CalendarIcon.vue'
 import RefreshIcon from '@/components/icon/RefreshIcon.vue'
 
-import { fetchMod, resetMod, getMod, getError } from '@/store/mod-details'
+import { fetchModData, resetModData, getModInfo, getError } from '@/store/mod-details'
 import formatNumber from '@/composables/formatNumber'
 import formatDate from '@/composables/formatDate'
 
 export default {
 	components: {
 		SubrouteSelector,
-		MarkdownRenderer,
 		PrimaryButton,
 		DownloadIcon,
 		CalendarIcon,
@@ -87,14 +88,13 @@ export default {
 	},
 	setup: () => {
 		const route = useRoute()
-		const router = useRouter()
 		const store = useStore()
 
-		const transIn = ref('animate__animated animate__flipInY')
-		const transOut = ref('animate__animated animate__flipOutY')
+		const contentInTransition = ref('animate__animated animate__flipInY')
+		const contentOutTransition = ref('animate__animated animate__flipOutY')
 
 		onBeforeRouteUpdate((to, from) => {
-			if (to.params.id != from.params.id) fetchMod(store, route.params.id as string)
+			if (to.params.id != from.params.id) fetchModData(store, route.params.id as string)
 
 			const subroutes = ['mod-description', 'mod-versions', 'mod-changelog', 'mod-gallery']
 
@@ -104,18 +104,18 @@ export default {
 				subroutes.indexOf(from.name.toString()) > subroutes.indexOf(to.name.toString())
 			) {
 				// Slide from right to left
-				transIn.value = 'animate__animated animate__fadeInLeft'
-				transOut.value = 'animate__animated animate__fadeOutRight'
+				contentInTransition.value = 'animate__animated animate__fadeInLeft'
+				contentOutTransition.value = 'animate__animated animate__fadeOutRight'
 			} else {
 				// Slide from left to right
-				transIn.value = 'animate__animated animate__fadeInRight'
-				transOut.value = 'animate__animated animate__fadeOutLeft'
+				contentInTransition.value = 'animate__animated animate__fadeInRight'
+				contentOutTransition.value = 'animate__animated animate__fadeOutLeft'
 			}
 		})
-		onBeforeRouteLeave(() => resetMod(store))
-		fetchMod(store, route.params.id as string)
+		onBeforeRouteLeave(() => resetModData(store))
+		fetchModData(store, route.params.id as string)
 
-		const mod = getMod(store)
+		const mod = getModInfo(store)
 		const iconURL = computed(() => {
 			return mod.value.icon_url || 'https://cdn-raw.modrinth.com/placeholder.svg'
 		})
@@ -127,8 +127,8 @@ export default {
 
 			formatNumber,
 			formatDate,
-			transIn,
-			transOut,
+			contentInTransition,
+			contentOutTransition,
 		}
 	},
 }

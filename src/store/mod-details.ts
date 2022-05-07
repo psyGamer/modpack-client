@@ -3,15 +3,29 @@ import { Store, ActionContext } from 'vuex'
 import { State } from '.'
 
 import ModrinthMod from '@/types/modrinth_api/ModrinthMod'
+import ModrinthVersion from '@/types/modrinth_api/ModrinthVersion'
 
-export const getMod = (store: Store<any>) => computed(() => store.getters['modDetails/getMod'])
-export const getError = (store: Store<any>) => computed(() => store.getters['modDetails/getError'])
+const modulePrefix = 'modDetails'
 
-export const fetchMod = (store: Store<any>, id: string) => store.dispatch('modDetails/fetchMod', id)
-export const resetMod = (store: Store<any>) => store.commit('modDetails/setMod', null)
+export const getModInfo = (store: Store<any>) =>
+	computed(() => store.getters[`${modulePrefix}/getModInfo`])
+export const getVersions = (store: Store<any>) =>
+	computed(() => store.getters[`${modulePrefix}/getVersions`])
+export const getError = (store: Store<any>) =>
+	computed(() => store.getters[`${modulePrefix}/getError`])
+
+export const fetchModData = (store: Store<any>, id: string) =>
+	store.dispatch(`${modulePrefix}/fetchModData`, id)
+
+export const resetModData = (store: Store<any>) => {
+	store.commit(`${modulePrefix}/setModInfo`, null)
+	store.commit(`${modulePrefix}/setVersions`)
+}
 
 export interface ModState {
 	mod: ModrinthMod | null
+	versions: ModrinthVersion[] | null
+
 	error: string | null
 }
 
@@ -19,29 +33,35 @@ type Context = ActionContext<ModState, State>
 
 const state: ModState = {
 	mod: null,
+	versions: null,
+
 	error: null,
 }
 const actions = {
-	fetchMod: async (context: Context, id: string) => {
+	fetchModData: async (context: Context, id: string) => {
 		try {
-			const response = await fetch(`https://api.modrinth.com/v2/project/${id}`)
-			console.log(`Got ${response} from https://api.modrinth.com/v2/project/${id}`)
-			if (!response.ok) {
-				throw Error('Failed fetching mod!')
-			}
+			const [modResponse, versionsResponse] = await Promise.all([
+				fetch(`https://api.modrinth.com/v2/project/${id}`),
+				fetch(`https://api.modrinth.com/v2/project/${id}/version`),
+			])
 
-			context.commit('setMod', await response.json())
+			if (!modResponse.ok || !versionsResponse.ok) throw Error('Failed fetching mod data!')
+
+			context.commit('setModInfo', await modResponse.json())
+			context.commit('setVersions', await versionsResponse.json())
 		} catch (err: any) {
 			context.commit('setError', err.message)
 		}
 	},
 }
 const getters = {
-	getMod: (state: ModState) => state.mod,
+	getModInfo: (state: ModState) => state.mod,
+	getVersions: (state: ModState) => state.versions,
 	getError: (state: ModState) => state.error,
 }
 const mutations = {
-	setMod: (state: ModState, mod: ModrinthMod) => (state.mod = mod),
+	setModInfo: (state: ModState, mod: ModrinthMod) => (state.mod = mod),
+	setVersions: (state: ModState, versions: ModrinthVersion[]) => (state.versions = versions),
 	setError: (state: ModState, error: string) => (state.error = error),
 }
 
