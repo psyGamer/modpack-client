@@ -68,7 +68,8 @@ export default defineComponent({
 		}
 	}
 
-	h1, h2 {
+	h1,
+	h2 {
 		position: relative;
 		font-size: 2em;
 		margin-block: 1em 0.75em;
@@ -84,7 +85,7 @@ export default defineComponent({
 			height: 0.1em;
 
 			left: 0;
-			bottom: -0.5em;
+			bottom: -0.6em;
 
 			border-radius: 100vw;
 		}
@@ -96,6 +97,11 @@ export default defineComponent({
 	}
 	h1 {
 		font-size: 2.75em;
+		padding-left: 0.5em;
+		margin-bottom: 1em;
+		&::after {
+			height: 0.15em;
+		}
 	}
 
 	ul,
@@ -104,6 +110,7 @@ export default defineComponent({
 		margin-inline: 2em 0;
 		li {
 			font-size: 1.1em;
+			margin-block: 0.5em;
 
 			&::marker {
 				font-weight: bold;

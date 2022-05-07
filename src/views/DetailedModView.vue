@@ -3,23 +3,30 @@
 	<div v-else-if="!mod">Loading...</div>
 
 	<div v-else class="mod">
-		<mod-titlebar :mod="mod" />
-
-		<div class="content">
-			<div class="main">
-				<subroute-selector
-					class="content-selector"
-					:routes="[
-						{ routeName: 'mod-description', displayName: 'Description' },
-						{ routeName: 'mod-versions', displayName: 'Versions' },
-						{ routeName: 'mod-changelog', displayName: 'Changelog' },
-						{ routeName: 'mod-gallery', displayName: 'Gallery' },
-					]"
-				/>
-				<router-view />
+		<div class="title-bar">
+			<div class="mod-info">
+				<img :srcset="`${iconURL} 2x`" :alt="mod.title" />
+				<div class="title-and-author">
+					<h1>{{ mod.title }}</h1>
+					<p>by {{ mod.team }}</p>
+				</div>
 			</div>
-			<div class="side">
-				<p class="description">{{ mod.description }}</p>
+			<subroute-selector
+				class="content-selector"
+				:routes="[
+					{ routeName: 'mod-description', displayName: 'Description' },
+					{ routeName: 'mod-versions', displayName: 'Versions' },
+					{ routeName: 'mod-changelog', displayName: 'Changelog' },
+					{ routeName: 'mod-gallery', displayName: 'Gallery' },
+				]"
+			/>
+			<div class="mod-stats">
+				<!-- <p class="description">{{ mod.description }}</p> -->
+				<p class="description">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, minus! Optio
+					nostrum in, ducimus velit iste necessitatibus id tempora saepe aut, eaque
+					voluptatibus et sed totam praesentium accusantium? Ex, omnis!
+				</p>
 				<div class="entry">
 					<div class="name"><download-icon />Downloads</div>
 					<div class="value">
@@ -39,35 +46,39 @@
 					</div>
 				</div>
 			</div>
+			<!-- <primary-button class="download-btn"> <download-icon />Add</primary-button> -->
+		</div>
+
+		<div class="content">
+			<div class="main">
+				<router-view />
+			</div>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
-
-import formatNumber from '@/composables/formatNumber'
-import formatDate from '@/composables/formatDate'
+import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute } from 'vue-router'
 
 import SubrouteSelector from '@/components/SubrouteSelector.vue'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer.vue'
-import ModTitlebar from '@/components/mod/ModTitlebar.vue'
 
+import PrimaryButton from '@/components/ui/PrimaryButton.vue'
 import DownloadIcon from '@/components/icon/DownloadIcon.vue'
 import CalendarIcon from '@/components/icon/CalendarIcon.vue'
 import RefreshIcon from '@/components/icon/RefreshIcon.vue'
 
-import { fetchMod, getMod, getError } from '@/store/mod-details'
-
-type ContentType = 'description' | 'versions' | 'changelog' | 'gallery'
+import { fetchMod, resetMod, getMod, getError } from '@/store/mod-details'
+import formatNumber from '@/composables/formatNumber'
+import formatDate from '@/composables/formatDate'
 
 export default {
 	components: {
 		SubrouteSelector,
 		MarkdownRenderer,
-		ModTitlebar,
+		PrimaryButton,
 		DownloadIcon,
 		CalendarIcon,
 		RefreshIcon,
@@ -76,25 +87,24 @@ export default {
 		const route = useRoute()
 		const store = useStore()
 
-		const selectedContent = ref<ContentType>(
-			(route.params.content || 'description') as ContentType
-		)
-		const reloadSelectedContent = () =>
-			(selectedContent.value = (route.params.content || 'description') as ContentType)
-
 		onBeforeRouteUpdate((to, from) => {
 			if (to.params.id != from.params.id) fetchMod(store, route.params.id as string)
-			if (to.params.content != from.params.content) reloadSelectedContent()
 		})
+		onBeforeRouteLeave(() => resetMod(store))
 		fetchMod(store, route.params.id as string)
 
+		const mod = getMod(store)
+		const iconURL = computed(() => {
+			return mod.value.icon_url || 'https://cdn-raw.modrinth.com/placeholder.svg'
+		})
+
 		return {
-			mod: getMod(store),
+			mod,
 			error: getError(store),
-			selectedContent,
+			iconURL,
+
 			formatNumber,
 			formatDate,
-			DownloadIcon,
 		}
 	},
 }
@@ -107,21 +117,73 @@ export default {
 
 	.main {
 		flex: 4;
-		background: $color-bg2;
+		// background: $color-bg2;
+		background: transparent;
 		border-radius: 2.5em;
 		margin-block: 2em;
 		margin-inline: 2em 1em;
 
-		.content-selector {
-			margin-top: 0;
-		}
 		.markdown {
 			max-width: 60vw;
 			margin: 0 auto;
 		}
 	}
-	.side {
-		flex: 1;
+}
+.title-bar {
+	font-size: 1rem;
+
+	display: grid;
+
+	grid-template-rows: auto 5em;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas:
+		'. mod-info mod-stats'
+		'. content-selector mod-stats';
+
+	padding-inline: 2em;
+
+	.mod-info {
+		grid-area: mod-info;
+		justify-self: center;
+		align-self: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		font-size: 3em;
+
+		img {
+			width: 4.5em;
+			height: 4.5em;
+			border-radius: $border-radius-icon;
+		}
+		.title-and-author {
+			margin-top: 0.25em;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-weight: bold;
+
+			h1 {
+				color: $color-text-heading;
+				font-size: 1.2em;
+			}
+			p {
+				color: $color-text-subheading;
+				font-size: 0.5em;
+			}
+		}
+	}
+	.content-selector {
+		grid-area: content-selector;
+		justify-self: center;
+		align-self: center;
+
+		margin: 0;
+	}
+	.mod-stats {
+		grid-area: mod-stats;
+		justify-self: end;
 		min-width: 30rem;
 		max-width: 35rem;
 		height: fit-content;
@@ -129,8 +191,6 @@ export default {
 		background: $color-bg2;
 		border-radius: 2.5em;
 
-		margin-block: 2em;
-		margin-inline: 1em 2em;
 		padding: 2em;
 
 		display: flex;
@@ -145,11 +205,11 @@ export default {
 		.description {
 			font-size: 1.6em;
 			font-weight: bold;
-			margin: 0.25em;
+			// margin: 0.25em;
 		}
 
 		.entry {
-			font-size: 1.4em;
+			font-size: 1.2em;
 			display: flex;
 			justify-content: space-around;
 			text-align: center;
@@ -171,8 +231,8 @@ export default {
 
 				svg {
 					stroke: $color-text-dark;
-					width: 2em;
-					height: 2em;
+					width: 1.5em;
+					height: 1.5em;
 					margin-right: 1em;
 				}
 			}
@@ -183,6 +243,9 @@ export default {
 				justify-content: flex-end;
 			}
 		}
+	}
+	.download-btn {
+		font-size: 2em;
 	}
 }
 </style>

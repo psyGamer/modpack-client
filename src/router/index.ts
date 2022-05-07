@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
 		path: '/mod/:id',
 		name: 'mod',
 		component: DetailedModView,
-		redirect: to => ({ name: 'mod-content', params: { ...to.params, content: 'description' } }),
+		redirect: () => ({ name: 'mod-description' }),
 		children: [
 			{
 				path: 'description',

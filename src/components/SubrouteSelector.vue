@@ -63,10 +63,11 @@ export default defineComponent({
 	width: fit-content;
 	height: 3em;
 
-	background: $color-bg3;
+	background: $color-bg2;
 	margin: 0.5em auto;
 
-	border-radius: 0 0 1.25em 1.25em;
+	// border-radius: 0 0 1.25em 1.25em;
+	border-radius: 1.25em;
 
 	ul {
 		height: 100%;

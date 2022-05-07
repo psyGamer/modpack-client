@@ -8,6 +8,7 @@ export const getMod = (store: Store<any>) => computed(() => store.getters['modDe
 export const getError = (store: Store<any>) => computed(() => store.getters['modDetails/getError'])
 
 export const fetchMod = (store: Store<any>, id: string) => store.dispatch('modDetails/fetchMod', id)
+export const resetMod = (store: Store<any>) => store.commit('modDetails/setMod', null)
 
 export interface ModState {
 	mod: ModrinthMod | null
