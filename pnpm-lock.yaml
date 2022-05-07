@@ -23,6 +23,7 @@ specifiers:
   sass-loader: ^12.6.0
   typescript: ~4.5.5
   vue: ^3.2.13
+  vue-cli-plugin-tauri: ~1.0.0-rc.2
   vue-router: ^4.0.3
   vue-style-loader: ^4.1.3
   vuex: ^4.0.0
@@ -54,6 +55,7 @@ devDependencies:
   node-sass: 7.0.1
   sass-loader: 12.6.0_node-sass@7.0.1
   typescript: 4.5.5
+  vue-cli-plugin-tauri: 1.0.0-rc.2
   vue-style-loader: 4.1.3
 
 packages:
@@ -1283,8 +1285,40 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
+  /@hapi/address/2.1.4:
+    resolution: {integrity: sha512-QD1PhQk+s31P1ixsX0H0Suoupp3VMXzIVMSwobR3F3MSUO2YCV0B7xqLcUw/Bh8yuvd3LhpyqLQWTNcRmp6IdQ==}
+    deprecated: Moved to 'npm install @sideway/address'
+    dev: true
+
+  /@hapi/bourne/1.3.2:
+    resolution: {integrity: sha512-1dVNHT76Uu5N3eJNTYcvxee+jzX4Z9lfciqRRHCU27ihbUcYi+iSc2iml5Ke1LXe1SyJCLA0+14Jh4tXJgOppA==}
+    deprecated: This version has been deprecated and is no longer supported or maintained
+    dev: true
+
+  /@hapi/hoek/8.5.1:
+    resolution: {integrity: sha512-yN7kbciD87WzLGc5539Tn0sApjyiGHAJgKvG9W8C7O+6c7qmoQMfVs0W4bX17eqz6C78QJqqFrtgdK5EWf6Qow==}
+    deprecated: This version has been deprecated and is no longer supported or maintained
+    dev: true
+
   /@hapi/hoek/9.2.1:
     resolution: {integrity: sha512-gfta+H8aziZsm8pZa0vj04KO6biEiisppNgA1kbJvFrrWu9Vm7eaUEy76DIxsuTaWvti5fkJVhllWc6ZTE+Mdw==}
+    dev: true
+
+  /@hapi/joi/15.1.1:
+    resolution: {integrity: sha512-entf8ZMOK8sc+8YfeOlM8pCfg3b5+WZIKBfUaaJT8UsjAAPjartzxIYm3TIbjvA4u+u++KbcXD38k682nVHDAQ==}
+    deprecated: Switch to 'npm install joi'
+    dependencies:
+      '@hapi/address': 2.1.4
+      '@hapi/bourne': 1.3.2
+      '@hapi/hoek': 8.5.1
+      '@hapi/topo': 3.1.6
+    dev: true
+
+  /@hapi/topo/3.1.6:
+    resolution: {integrity: sha512-tAag0jEcjwH+P2quUfipd7liWCNX2F8NvYjQp2wtInsZxnMlypdw0FtAOLxtvvkO+GSRRbmNi8m/5y42PQJYCQ==}
+    deprecated: This version has been deprecated and is no longer supported or maintained
+    dependencies:
+      '@hapi/hoek': 8.5.1
     dev: true
 
   /@hapi/topo/5.1.0:
@@ -1404,6 +1438,103 @@ packages:
 
   /@soda/get-current-script/1.0.2:
     resolution: {integrity: sha512-T7VNNlYVM1SgQ+VsMYhnDkcGmWhQdL0bDyGm5TlQ3GBXnJscEClUUOKduWTmm2zCnvNLC1hc3JpuXjs/nFOc5w==}
+    dev: true
+
+  /@tauri-apps/cli-darwin-arm64/1.0.0-rc.9:
+    resolution: {integrity: sha512-cpcSRyVOh3n5GsCdKtVQpLJ36yx7h+KY868l7KhPnM5EL1cQbFwYzD/VHlzFvfrpS19YvPBB/AHln4rll5iWvw==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-darwin-x64/1.0.0-rc.9:
+    resolution: {integrity: sha512-ku8QpMNrfqyCk2adLdVB+zzaCb7T0/RgVvaqEZqK54WW4blUxkeKHbKqZ/SKRdxTkghHbgJIoBtlk1A5GUbAwg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-arm-gnueabihf/1.0.0-rc.9:
+    resolution: {integrity: sha512-Qlwm4eWo0uCeL3kmowfaLghPehYTYvnM4fH6cRZndzs6/abqsFdghmEmhP5mn34/RAnHXAUANItqlgk6L7C4iw==}
+    engines: {node: '>= 10'}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-arm64-gnu/1.0.0-rc.9:
+    resolution: {integrity: sha512-Rr4S902dYjRnDCu141f5Cz3JxwKxX/ax7LiMhSifQu5o2wSiezmZ20VRHBwW1UuZxvGV+hxTuZVnfD6NKQdWdA==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-arm64-musl/1.0.0-rc.9:
+    resolution: {integrity: sha512-MxqjspY2aS/nxtvBMT8TExZfDWDEsUvQRHHY/2KoBYpqpzucW6WXRGmeOvS1GeA3vnub2/Kq5i32jGRDT1tvrA==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-x64-gnu/1.0.0-rc.9:
+    resolution: {integrity: sha512-LD7KnJuH1mYFwQfcALPttBnaSG6pgO87Z6nY3xXJjo+A4ttPHcmIBaNdXCTjAmib/umD0nD8k95Hw9iJFYTuiA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-linux-x64-musl/1.0.0-rc.9:
+    resolution: {integrity: sha512-ifocAxBYhk7qrO5x1mizxx/yABvkmyia0kw9eXUn7d5a30HoBcl/A9t+w+7c4B/n/D+gxEMSr6CPaIZv7KnTog==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-win32-ia32-msvc/1.0.0-rc.9:
+    resolution: {integrity: sha512-ClDYF4CstoccPMVkIHyvy1jzlWXIYZX2mjKB6z18MdJ0O7Je8TC115K30lqXtSdPuKX35xWDcWU2b/gllcUUzA==}
+    engines: {node: '>= 10'}
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli-win32-x64-msvc/1.0.0-rc.9:
+    resolution: {integrity: sha512-hJjnpl864OhpIp2lTMTW4ad2Aia5/Tbf7k8GJILzUY/XkBhZjNIgZORa8bDcnZRCTU+RDgMFc+AoKtDIircjnA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@tauri-apps/cli/1.0.0-rc.9:
+    resolution: {integrity: sha512-j+HZ65wdfFrMwisYeQpdZnldONevBPHjAo9v9Impf0irUU2UR5nwyvyArHTaWCvNeqEs+YV4XXHsfm2xVpnaug==}
+    engines: {node: '>= 10'}
+    hasBin: true
+    optionalDependencies:
+      '@tauri-apps/cli-darwin-arm64': 1.0.0-rc.9
+      '@tauri-apps/cli-darwin-x64': 1.0.0-rc.9
+      '@tauri-apps/cli-linux-arm-gnueabihf': 1.0.0-rc.9
+      '@tauri-apps/cli-linux-arm64-gnu': 1.0.0-rc.9
+      '@tauri-apps/cli-linux-arm64-musl': 1.0.0-rc.9
+      '@tauri-apps/cli-linux-x64-gnu': 1.0.0-rc.9
+      '@tauri-apps/cli-linux-x64-musl': 1.0.0-rc.9
+      '@tauri-apps/cli-win32-ia32-msvc': 1.0.0-rc.9
+      '@tauri-apps/cli-win32-x64-msvc': 1.0.0-rc.9
     dev: true
 
   /@tootallnate/once/1.1.2:
@@ -2051,6 +2182,23 @@ packages:
       - webpack-cli
     dev: true
 
+  /@vue/cli-shared-utils/4.5.17:
+    resolution: {integrity: sha512-VoFNdxvTW4vZu3ne+j1Mf7mU99J2SAoRVn9XPrsouTUUJablglM8DASk7Ixhsh6ymyL/W9EADQFR6Pgj8Ujjuw==}
+    dependencies:
+      '@achrinza/node-ipc': 9.2.2
+      '@hapi/joi': 15.1.1
+      chalk: 2.4.2
+      execa: 1.0.0
+      launch-editor: 2.3.0
+      lru-cache: 5.1.1
+      open: 6.4.0
+      ora: 3.4.0
+      read-pkg: 5.2.0
+      request: 2.88.2
+      semver: 6.3.0
+      strip-ansi: 6.0.1
+    dev: true
+
   /@vue/cli-shared-utils/5.0.4:
     resolution: {integrity: sha512-nfAsj8Nopu5sVHMBIaut/YL7NaJFVmTBSTJD7LM17jc5uytrM9JwiRtzCiv3JWRBG78Xdb/s2Xb/1YR4fkdmkQ==}
     dependencies:
@@ -2457,6 +2605,11 @@ packages:
   /ansi-regex/3.0.1:
     resolution: {integrity: sha512-+O9Jct8wf++lXxxFc4hc8LsjaSq0HFzzL7cVsw8pRDIPdjKD2mT4ytDZlLuSBZ4cLKZFXIrMGO7DbQCtMJJMKw==}
     engines: {node: '>=4'}
+    dev: true
+
+  /ansi-regex/4.1.1:
+    resolution: {integrity: sha512-ILlv4k/3f6vfQ4OoP2AGvirOktlQ98ZEL1k9FaQjxa3L1abBgbuTDAdPOpvbGncC0BTVQrl+OM8xZGK6tWXt7g==}
+    engines: {node: '>=6'}
     dev: true
 
   /ansi-regex/5.0.1:
@@ -4753,6 +4906,11 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /is-wsl/1.1.0:
+    resolution: {integrity: sha1-HxbkqiKwTRM2tmGIpmrzxgDDpm0=}
+    engines: {node: '>=4'}
+    dev: true
+
   /is-wsl/2.2.0:
     resolution: {integrity: sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==}
     engines: {node: '>=8'}
@@ -5001,6 +5159,13 @@ packages:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: true
 
+  /log-symbols/2.2.0:
+    resolution: {integrity: sha512-VeIAFslyIerEJLXHziedo2basKbMKtTw3vfn5IzG0XTjhAVEJyNHnL2p7vc+wBDSdQuUpNw3M2u6xb9QsAY5Eg==}
+    engines: {node: '>=4'}
+    dependencies:
+      chalk: 2.4.2
+    dev: true
+
   /log-symbols/4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
     engines: {node: '>=10'}
@@ -5029,6 +5194,12 @@ packages:
     dependencies:
       pseudomap: 1.0.2
       yallist: 2.1.2
+    dev: true
+
+  /lru-cache/5.1.1:
+    resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+    dependencies:
+      yallist: 3.1.1
     dev: true
 
   /lru-cache/6.0.0:
@@ -5582,6 +5753,13 @@ packages:
       mimic-fn: 2.1.0
     dev: true
 
+  /open/6.4.0:
+    resolution: {integrity: sha512-IFenVPgF70fSm1keSd2iDBIDIBZkroLeuffXq+wKTzTJlBpesFWojV9lb8mzOfaAzM1sr7HQHuO0vtV0zYekGg==}
+    engines: {node: '>=8'}
+    dependencies:
+      is-wsl: 1.1.0
+    dev: true
+
   /open/8.4.0:
     resolution: {integrity: sha512-XgFPPM+B28FtCCgSb9I+s9szOC1vZRSwgWsRUA5ylIxRTgKozqjOCrVOqGsYABPYK5qnfqClxZTFBa8PKt2v6Q==}
     engines: {node: '>=12'}
@@ -5606,6 +5784,18 @@ packages:
       prelude-ls: 1.2.1
       type-check: 0.4.0
       word-wrap: 1.2.3
+    dev: true
+
+  /ora/3.4.0:
+    resolution: {integrity: sha512-eNwHudNbO1folBP3JsZ19v9azXWtQZjICdr3Q0TDPIaeBQ3mXLrh54wM+er0+hSp+dWKf+Z8KM58CYzEyIYxYg==}
+    engines: {node: '>=6'}
+    dependencies:
+      chalk: 2.4.2
+      cli-cursor: 2.1.0
+      cli-spinners: 2.6.1
+      log-symbols: 2.2.0
+      strip-ansi: 5.2.0
+      wcwidth: 1.0.1
     dev: true
 
   /ora/5.4.1:
@@ -6933,6 +7123,13 @@ packages:
       ansi-regex: 3.0.1
     dev: true
 
+  /strip-ansi/5.2.0:
+    resolution: {integrity: sha512-DuRs1gKbBqsMKIZlrffwlug8MHkcnpjs5VPmL1PAh+mA30U0DTotfDZ0d2UUsXpPmPmMMJ6W773MaA3J+lbiWA==}
+    engines: {node: '>=6'}
+    dependencies:
+      ansi-regex: 4.1.1
+    dev: true
+
   /strip-ansi/6.0.1:
     resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
     engines: {node: '>=8'}
@@ -7354,6 +7551,13 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
+  /vue-cli-plugin-tauri/1.0.0-rc.2:
+    resolution: {integrity: sha512-Gvgs3syCdY100UCNKclyRlQ2URK/Yk5SbYueUb0sQmqHWDaBgu7vqEQ9eEWcDeRXkNIlLKzlpTJ9bJLjey83yQ==}
+    dependencies:
+      '@tauri-apps/cli': 1.0.0-rc.9
+      '@vue/cli-shared-utils': 4.5.17
+    dev: true
+
   /vue-eslint-parser/8.3.0_eslint@7.32.0:
     resolution: {integrity: sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -7727,6 +7931,10 @@ packages:
 
   /yallist/2.1.2:
     resolution: {integrity: sha1-HBH5IY8HYImkfdUS+TxmmaaoHVI=}
+    dev: true
+
+  /yallist/3.1.1:
+    resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
     dev: true
 
   /yallist/4.0.0:
