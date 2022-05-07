@@ -1,14 +1,16 @@
-import { createStore } from 'vuex'
+import { createLogger, createStore } from 'vuex'
+
+import modDetails, { ModState } from './mod-details'
+
+const debug = process.env.NODE_ENV !== 'production'
+export interface State {
+	mod: ModState
+}
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+	modules: {
+		modDetails,
+	},
+	strict: debug,
+	plugins: debug ? [createLogger()] : [],
 })

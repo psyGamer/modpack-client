@@ -5,6 +5,8 @@ import ModsView from '../views/ModsView.vue'
 import DetailedModView from '../views/DetailedModView.vue'
 import ModDescriptionView from '../views/mod/ModDescriptionView.vue'
 import ModVersionsView from '../views/mod/ModVersionsView.vue'
+import ModChangelogView from '../views/mod/ModVersionsView.vue'
+import ModGalleryView from '../views/mod/ModVersionsView.vue'
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -24,16 +26,24 @@ const routes: Array<RouteRecordRaw> = [
 		redirect: to => ({ name: 'mod-content', params: { ...to.params, content: 'description' } }),
 		children: [
 			{
-				//path: ':content(description|versions|changelog|gallery)',
 				path: 'description',
 				name: 'mod-description',
 				component: ModDescriptionView,
 			},
 			{
-				//path: ':content(description|versions|changelog|gallery)',
 				path: 'versions',
 				name: 'mod-versions',
 				component: ModVersionsView,
+			},
+			{
+				path: 'changelog',
+				name: 'mod-changelog',
+				component: ModChangelogView,
+			},
+			{
+				path: 'gallery',
+				name: 'mod-gallery',
+				component: ModGalleryView,
 			},
 		],
 	},

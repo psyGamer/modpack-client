@@ -12,8 +12,8 @@
 					:routes="[
 						{ routeName: 'mod-description', displayName: 'Description' },
 						{ routeName: 'mod-versions', displayName: 'Versions' },
-						{ routeName: 'mod-versions', displayName: 'Changelog' },
-						{ routeName: 'mod-versions', displayName: 'Gallery' },
+						{ routeName: 'mod-changelog', displayName: 'Changelog' },
+						{ routeName: 'mod-gallery', displayName: 'Gallery' },
 					]"
 				/>
 				<router-view />
@@ -45,11 +45,9 @@
 
 <script lang="ts">
 import { ref } from 'vue'
+import { useStore } from 'vuex'
 import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 
-import ModrinthMod from '@/types/modrinth_api/ModrinthMod'
-
-import fetchMod from '@/composables/fetchMod'
 import formatNumber from '@/composables/formatNumber'
 import formatDate from '@/composables/formatDate'
 
@@ -60,6 +58,8 @@ import ModTitlebar from '@/components/mod/ModTitlebar.vue'
 import DownloadIcon from '@/components/icon/DownloadIcon.vue'
 import CalendarIcon from '@/components/icon/CalendarIcon.vue'
 import RefreshIcon from '@/components/icon/RefreshIcon.vue'
+
+import { fetchMod, getMod, getError } from '@/store/mod-details'
 
 type ContentType = 'description' | 'versions' | 'changelog' | 'gallery'
 
@@ -74,9 +74,7 @@ export default {
 	},
 	setup: () => {
 		const route = useRoute()
-
-		const mod = ref<ModrinthMod | null>(null)
-		const error = ref<string | null>(null)
+		const store = useStore()
 
 		const selectedContent = ref<ContentType>(
 			(route.params.content || 'description') as ContentType
@@ -84,13 +82,20 @@ export default {
 		const reloadSelectedContent = () =>
 			(selectedContent.value = (route.params.content || 'description') as ContentType)
 
-		fetchMod(route.params.id as string, mod, error)
 		onBeforeRouteUpdate((to, from) => {
-			if (to.params.id != from.params.id) fetchMod(to.params.id as string, mod, error)
+			if (to.params.id != from.params.id) fetchMod(store, route.params.id as string)
 			if (to.params.content != from.params.content) reloadSelectedContent()
 		})
+		fetchMod(store, route.params.id as string)
 
-		return { mod, error, selectedContent, formatNumber, formatDate, DownloadIcon }
+		return {
+			mod: getMod(store),
+			error: getError(store),
+			selectedContent,
+			formatNumber,
+			formatDate,
+			DownloadIcon,
+		}
 	},
 }
 </script>

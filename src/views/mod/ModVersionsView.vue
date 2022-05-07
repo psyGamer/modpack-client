@@ -6,28 +6,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { defineComponent } from 'vue'
+import { useStore } from 'vuex'
 
-import ModrinthMod from '@/types/modrinth_api/ModrinthMod'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer.vue'
-import fetchMod from '@/composables/fetchMod'
+import { getMod, getError } from '@/store/mod-details'
 
 export default defineComponent({
 	components: { MarkdownRenderer },
 	setup: () => {
-		const route = useRoute()
-
-		const mod = ref<ModrinthMod | null>(null)
-		const error = ref<string | null>(null)
-
-		fetchMod(route.params.id as string, mod, error)
-
-		onBeforeRouteUpdate((to, from) => {
-			if (to.params.id != from.params.id) fetchMod(to.params.id as string, mod, error)
-		})
-
-		return { mod, error }
+		const store = useStore()
+		return { mod: getMod(store), error: getError(store) }
 	},
 })
 </script>
