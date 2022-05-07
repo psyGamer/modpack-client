@@ -50,17 +50,19 @@
 		</div>
 
 		<div class="content">
-			<div class="main">
-				<router-view />
-			</div>
+			<router-view v-slot="{ Component }">
+				<transition :enter-active-class="transIn" :leave-active-class="transOut">
+					<component :is="Component" />
+				</transition>
+			</router-view>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 
 import SubrouteSelector from '@/components/SubrouteSelector.vue'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer.vue'
@@ -85,10 +87,30 @@ export default {
 	},
 	setup: () => {
 		const route = useRoute()
+		const router = useRouter()
 		const store = useStore()
+
+		const transIn = ref('animate__animated animate__flipInY')
+		const transOut = ref('animate__animated animate__flipOutY')
 
 		onBeforeRouteUpdate((to, from) => {
 			if (to.params.id != from.params.id) fetchMod(store, route.params.id as string)
+
+			const subroutes = ['mod-description', 'mod-versions', 'mod-changelog', 'mod-gallery']
+
+			if (
+				from.name &&
+				to.name &&
+				subroutes.indexOf(from.name.toString()) > subroutes.indexOf(to.name.toString())
+			) {
+				// Slide from right to left
+				transIn.value = 'animate__animated animate__fadeInLeft'
+				transOut.value = 'animate__animated animate__fadeOutRight'
+			} else {
+				// Slide from left to right
+				transIn.value = 'animate__animated animate__fadeInRight'
+				transOut.value = 'animate__animated animate__fadeOutLeft'
+			}
 		})
 		onBeforeRouteLeave(() => resetMod(store))
 		fetchMod(store, route.params.id as string)
@@ -105,28 +127,32 @@ export default {
 
 			formatNumber,
 			formatDate,
+			transIn,
+			transOut,
 		}
 	},
 }
 </script>
 
 <style lang="scss">
+.mod {
+	position: relative;
+}
+
 .content {
+	position: relative;
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 
-	.main {
-		flex: 4;
-		// background: $color-bg2;
-		background: transparent;
-		border-radius: 2.5em;
-		margin-block: 2em;
-		margin-inline: 2em 1em;
+	border-radius: 2.5em;
+	margin-block: 2em;
+	margin-inline: 2em 1em;
 
-		.markdown {
-			max-width: 60vw;
-			margin: 0 auto;
-		}
+	.page {
+		width: 60vw;
+		margin: 0 auto;
+		padding: 1.5em;
+		position: absolute;
 	}
 }
 .title-bar {

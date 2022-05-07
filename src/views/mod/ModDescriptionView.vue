@@ -1,8 +1,10 @@
 <template>
-	<div v-if="error">{{ error }}</div>
-	<div v-else-if="!mod">Loading...</div>
+	<div class="page">
+		<div v-if="error">{{ error }}</div>
+		<div v-else-if="!mod">Loading...</div>
 
-	<markdown-renderer v-else :content="mod.body" />
+		<markdown-renderer v-else :content="mod.body" />
+	</div>
 </template>
 
 <script lang="ts">
@@ -20,5 +22,3 @@ export default defineComponent({
 	},
 })
 </script>
-
-<style></style>

@@ -1,8 +1,7 @@
 <template>
-	<div v-if="error">{{ error }}</div>
-	<div v-else-if="!mod">Loading...</div>
-
-	<markdown-renderer v-else :content="mod.body" />
+	<div class="page">
+		<div>Changelog</div>
+	</div>
 </template>
 
 <script lang="ts">
@@ -21,4 +20,8 @@ export default defineComponent({
 })
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+div {
+	background: red;
+}
+</style>

@@ -5,8 +5,8 @@ import ModsView from '../views/ModsView.vue'
 import DetailedModView from '../views/DetailedModView.vue'
 import ModDescriptionView from '../views/mod/ModDescriptionView.vue'
 import ModVersionsView from '../views/mod/ModVersionsView.vue'
-import ModChangelogView from '../views/mod/ModVersionsView.vue'
-import ModGalleryView from '../views/mod/ModVersionsView.vue'
+import ModChangelogView from '../views/mod/ModChangelogView.vue'
+import ModGalleryView from '../views/mod/ModGalleryView.vue'
 
 const routes: Array<RouteRecordRaw> = [
 	{
