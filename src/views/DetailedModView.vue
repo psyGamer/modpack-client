@@ -67,16 +67,16 @@ import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute } from 'vue-router'
 
+import { fetchModData, resetModData, getModInfo, getError } from '@/store/mod-details'
+import formatNumber from '@/composables/formatNumber'
+import formatDate from '@/composables/formatDate'
+
 import SubrouteSelector from '@/components/SubrouteSelector.vue'
 
 import PrimaryButton from '@/components/ui/PrimaryButton.vue'
 import DownloadIcon from '@/components/icon/DownloadIcon.vue'
 import CalendarIcon from '@/components/icon/CalendarIcon.vue'
 import RefreshIcon from '@/components/icon/RefreshIcon.vue'
-
-import { fetchModData, resetModData, getModInfo, getError } from '@/store/mod-details'
-import formatNumber from '@/composables/formatNumber'
-import formatDate from '@/composables/formatDate'
 
 export default {
 	components: {
@@ -117,7 +117,7 @@ export default {
 
 		const mod = getModInfo(store)
 		const iconURL = computed(() => {
-			return mod.value.icon_url || 'https://cdn-raw.modrinth.com/placeholder.svg'
+			return mod?.value?.icon_url || 'https://cdn-raw.modrinth.com/placeholder.svg'
 		})
 
 		return {
@@ -148,7 +148,7 @@ export default {
 	margin-block: 2em;
 	margin-inline: 2em 1em;
 
-	.page {
+	.content-page {
 		width: 60vw;
 		margin: 0 auto;
 		padding: 1.5em;

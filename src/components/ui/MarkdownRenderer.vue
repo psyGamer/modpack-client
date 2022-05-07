@@ -104,13 +104,17 @@ export default defineComponent({
 		}
 	}
 
+	h3 {
+		margin-top: 0.75em;
+	}
+
 	ul,
 	ol {
 		margin-block: 1em;
 		margin-inline: 2em 0;
 		li {
 			font-size: 1.1em;
-			margin-block: 0.5em;
+			margin-top: 1em;
 
 			&::marker {
 				font-weight: bold;
@@ -122,6 +126,7 @@ export default defineComponent({
 		max-width: 100%;
 		margin-block: 0.75em;
 	}
+
 	code {
 		font-size: 0.8em;
 		font-family: 'Jetbrains Mono';

@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, ComputedRef } from 'vue'
 import { Store, ActionContext } from 'vuex'
 import { State } from '.'
 
@@ -7,11 +7,11 @@ import ModrinthVersion from '@/types/modrinth_api/ModrinthVersion'
 
 const modulePrefix = 'modDetails'
 
-export const getModInfo = (store: Store<any>) =>
+export const getModInfo = (store: Store<any>): ComputedRef<ModrinthMod | null> =>
 	computed(() => store.getters[`${modulePrefix}/getModInfo`])
-export const getVersions = (store: Store<any>) =>
+export const getVersions = (store: Store<any>): ComputedRef<ModrinthVersion[] | null> =>
 	computed(() => store.getters[`${modulePrefix}/getVersions`])
-export const getError = (store: Store<any>) =>
+export const getError = (store: Store<any>): ComputedRef<string | null> =>
 	computed(() => store.getters[`${modulePrefix}/getError`])
 
 export const fetchModData = (store: Store<any>, id: string) =>
