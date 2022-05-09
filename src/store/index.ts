@@ -2,7 +2,8 @@ import { createLogger, createStore } from 'vuex'
 
 import modDetails, { ModState } from './mod-details'
 
-const debug = process.env.NODE_ENV !== 'production'
+// eslint disable next line
+const debug = import.meta.env.NODE_ENV !== 'production'
 export interface State {
 	mod: ModState
 }
