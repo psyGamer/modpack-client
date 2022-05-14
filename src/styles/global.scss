@@ -11,6 +11,13 @@
 	font-family: $font-standard, $font-standard-emoji;
 }
 
+// We don't want to apply the emoji fix to FireFox
+@-moz-document url-prefix() {
+	:root {
+		font-family: $font-standard;
+	}
+}
+
 body {
 	color: $color-text;
 	background: $color-bg1;
