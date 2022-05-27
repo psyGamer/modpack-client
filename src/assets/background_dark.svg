@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="none" viewBox="0 0 70 70">
+  <g clip-path="url(#a)">
+    <path fill="#1E1E1E" d="M0 0v70h70V0H0Z"/>
+    <path fill="#1D1D1D" d="M70 60 60 70h10V60ZM0 20 20 0H0v20Zm0 50h20l50-50V0H60L0 60v10Z"/>
+    <path stroke="#222222" stroke-width="1" d="M70 0 0 70m70-10L10 0 0 10l60 60M0 0l70 70m0-60L10 70 0 60 60 0l10 10ZM20 70l50-50L50 0 0 50l20 20Zm10 0 40-40L40 0 0 40l30 30Zm40-30L40 70 0 30 30 0l40 40ZM50 70l20-20L20 0 0 20l50 50Z"/>
+  </g>
+</svg>

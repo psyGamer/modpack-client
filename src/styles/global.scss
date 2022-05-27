@@ -20,7 +20,8 @@
 
 body {
 	color: $color-text;
-	background: $color-bg1;
+	background: $bg1-color $bg1;
+	position: relative;
 }
 
 // Fonts
