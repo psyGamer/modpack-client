@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@tauri-apps/api': 1.0.0-rc.7
   '@types/luxon': ^2.3.1
   '@types/marked': ^4.0.3
   '@types/sanitize-html': ^2.6.2
@@ -23,6 +24,7 @@ specifiers:
   vuex: ^4.0.0
 
 dependencies:
+  '@tauri-apps/api': 1.0.0-rc.7
   luxon: 2.4.0
   marked: 4.0.17
   sanitize-html: 2.7.0
@@ -182,6 +184,13 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
     dev: true
+
+  /@tauri-apps/api/1.0.0-rc.7:
+    resolution: {integrity: sha512-aRrhRz7/YOG6TdsaKKi9sqqsUrWJ7uNhFqBxW6443TDdkvLk4r7caE0eB7tfegnvrzydrPRBC8GjeENDQDtp9g==}
+    engines: {node: '>= 12.22.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
+    dependencies:
+      type-fest: 2.13.0
+    dev: false
 
   /@tauri-apps/cli-darwin-arm64/1.0.0-rc.11:
     resolution: {integrity: sha512-OiefgwvFmyo/sbZtOo+hYFFGUS5hP3QlAtwDw0AMtGGA6K2QIb8KzMog5hsNcqp8h4vOUJ/0vMy8KdPHRmc90A==}
@@ -2293,6 +2302,11 @@ packages:
     resolution: {integrity: sha512-q+MB8nYR1KDLrgr4G5yemftpMC7/QLqVndBmEEdqzmNj5dcFOO4Oo8qlwZE3ULT3+Zim1F8Kq4cBnikNhlCMlg==}
     engines: {node: '>=8'}
     dev: true
+
+  /type-fest/2.13.0:
+    resolution: {integrity: sha512-lPfAm42MxE4/456+QyIaaVBAwgpJb6xZ8PRu09utnhPdWwcyj9vgy6Sq0Z5yNbJ21EdxB5dRU/Qg8bsyAMtlcw==}
+    engines: {node: '>=12.20'}
+    dev: false
 
   /typescript/4.5.5:
     resolution: {integrity: sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==}
