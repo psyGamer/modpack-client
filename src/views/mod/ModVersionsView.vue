@@ -24,7 +24,9 @@
 						</div>
 					</div>
 
-					<primary-button class="install-btn">Install</primary-button>
+					<primary-button @click="download(version)" class="install-btn">
+						Install
+					</primary-button>
 				</div>
 
 				<markdown-renderer :content="version.changelog" class="changelog" />
@@ -37,6 +39,8 @@
 import { defineComponent } from 'vue'
 import { useStore } from 'vuex'
 
+import { invoke } from '@tauri-apps/api'
+
 import { getVersions } from '@/store/mod-details'
 import formatNumber from '@/composables/formatNumber'
 import formatDate from '@/composables/formatDate'
@@ -46,12 +50,19 @@ import PrimaryButton from '@/components/ui/PrimaryButton.vue'
 import AccountIcon from '@/components/icon/AccountIcon.vue'
 import DownloadIcon from '@/components/icon/DownloadIcon.vue'
 import CalendarIcon from '@/components/icon/CalendarIcon.vue'
+import ModrinthVersion from '@/types/modrinth_api/ModrinthVersion'
 
 export default defineComponent({
 	components: { MarkdownRenderer, PrimaryButton, AccountIcon, DownloadIcon, CalendarIcon },
 	setup: () => {
 		const store = useStore()
-		return { versions: getVersions(store), formatNumber, formatDate }
+
+		const download = (version: ModrinthVersion) => {
+			console.log(`Downloading: ${version}`)
+			invoke('download_file')
+		}
+
+		return { versions: getVersions(store), download, formatNumber, formatDate }
 	},
 })
 </script>
