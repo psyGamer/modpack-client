@@ -6,7 +6,9 @@
 		"dev": "vite",
 		"build": "vite build",
 		"serve": "vite preview",
-		"lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src"
+		"lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+		"tauri:build": "vue-cli-service tauri:build",
+		"tauri:serve": "vue-cli-service tauri:serve"
 	},
 	"dependencies": {
 		"luxon": "^2.3.2",
@@ -29,6 +31,7 @@
 		"sass": "^1.51.0",
 		"typescript": "~4.5.5",
 		"vite": "^2.9.8",
+		"vue-cli-plugin-tauri": "~1.0.0-rc.2",
 		"vue-style-loader": "^4.1.3"
 	}
 }
